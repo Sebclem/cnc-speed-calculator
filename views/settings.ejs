@@ -1,0 +1,49 @@
+<div class="card bg-dark shadow-sm border-secondary">
+    <div class="card-header border-secondary border-bottom h3 text-center">
+        <%= __('Settings') %>
+    </div>
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <label for="preset_cut" class="form-label"><%= __("Material") %></label>
+                <select class="form-select border-accent" id="preset_cut" onchange="onChange()">
+                    <% preset_cut.forEach(function (preset){ %>
+                        <option value="<%= preset.id %>"><%= preset.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div class="col-12 col-md-6 mt-md-0 mt-3">
+                <label for="preset_step_down_factor" class="form-label"><%= __('Step down factor') %></label>
+                <select class="form-select border-accent" id="preset_step_down_factor" onchange="onChange()">
+                    <% step_down_factor.forEach(function (preset){ %>
+                        <option value="<%= preset.id %>"><%= preset.name %></option>
+                    <% }) %>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3 justify-content-center">
+            <div class="col-6 col-md-3">
+                <label for="tooth_nbr" class="form-label"><%= __('Number of tooth') %></label>
+                <input type="number" min="1" step="1" class="form-control border-accent" id="tooth_nbr" onchange="onChange()"
+                       onkeyup="onChange()" value="1">
+
+            </div>
+            <div class="col-6 col-md-3">
+                <label for="tool_diameter" class="form-label"><%= __('Tool Diameter') %></label>
+                <div class="input-group">
+                    <input type="number" min="1" step="0.1" class="form-control border-accent border-end-0" id="tool_diameter" onkeyup="onChange()"
+                           onchange="onChange()" value="3.0">
+                    <span class="input-group-text border-accent">mm</span>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mt-3 mt-md-0">
+                <label for="max_rpm" class="form-label"><%= __('Spindle Max Speed') %></label>
+                <div class="input-group">
+                    <input type="number" min="1000" step="1" class="form-control border-accent border-end-0" id="max_rpm" onkeyup="onChange()"
+                           onchange="onChange()" value="30000">
+                    <span class="input-group-text border-accent">RPM</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
