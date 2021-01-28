@@ -1,5 +1,6 @@
 const logger = require('../config/winston')
 const sequelize = require('./index')
+const bcrypt = require('bcrypt')
 
 async function reset() {
     logger.warn('Reset database...');
@@ -103,7 +104,9 @@ async function reset() {
             k_more_6: 0.35
         },
     ])
+    await sequelize.models.user.create({username: "admin" , password: bcrypt.hashSync("love_cnc", 10)})
     await sequelize.models.need_init.create({name: 'init'})
+
     logger.info('...Done')
 }
 

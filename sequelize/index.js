@@ -11,7 +11,8 @@ const sequelize = new Sequelize({
 const modelDefiners = [
     require('./models/preset-cut.model'),
     require('./models/preset-step-down-factor.model'),
-    require('./models/need-init.model')
+    require('./models/need-init.model'),
+    require('./models/user.model')
 ];
 
 for (const modelDefiner of modelDefiners) {

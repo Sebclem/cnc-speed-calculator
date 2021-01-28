@@ -2,12 +2,16 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser')
 const logger = require('./config/winston');
 const sassMiddleware = require('node-sass-middleware');
 const expressWinston = require('express-winston');
 const i18n = require('i18n');
 
 const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
+
+const passport = require('./config/passport');
 
 const app = express();
 
@@ -39,17 +43,28 @@ app.use(expressWinston.logger({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(cookieParser());
-app.use(sassMiddleware({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
-    indentedSyntax: true, // true = .sass and false = .scss
-    sourceMap: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(sassMiddleware({
+//     src: path.join(__dirname, 'public'),
+//     dest: path.join(__dirname, 'public'),
+//     indentedSyntax: false, // true = .sass and false = .scss
+//     sourceMap: true,
+//     debug: false,
+//     response: false,
+//     log: function (severity, key, value) { logger.log(severity, `node-sass-middleware   ${key} : ${value}`); }
+//
+// }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(i18n.init)
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 app.use('/', indexRouter);
+app.use('/', loginRouter);
 
 // Boootstrap JS Files
 app.use('/js/bootstrap.min.js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js/bootstrap.min.js')))
