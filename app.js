@@ -6,10 +6,13 @@ const bodyParser = require('body-parser')
 const logger = require('./config/winston');
 const sassMiddleware = require('node-sass-middleware');
 const expressWinston = require('express-winston');
+const flash = require('connect-flash');
 const i18n = require('i18n');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login');
+const presetManagerRouter = require('./routes/preset-manager');
 
 const passport = require('./config/passport');
 
@@ -43,7 +46,7 @@ app.use(expressWinston.logger({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(sassMiddleware({
@@ -61,13 +64,19 @@ app.use(i18n.init)
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 
 app.use('/', indexRouter);
 app.use('/', loginRouter);
+app.use('/', presetManagerRouter);
 
 // Boootstrap JS Files
 app.use('/js/bootstrap.min.js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js/bootstrap.min.js')))
+
+// Fontawesome Files
+app.use('/css/fa-all.min.css', express.static(path.join(__dirname, '/node_modules/@fortawesome/fontawesome-free/css/all.min.css')))
+app.use('/webfonts/', express.static(path.join(__dirname, '/node_modules/@fortawesome/fontawesome-free/webfonts')))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

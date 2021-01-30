@@ -104,14 +104,14 @@ async function reset() {
             k_more_6: 0.35
         },
     ])
-    await sequelize.models.user.create({username: "admin" , password: bcrypt.hashSync("love_cnc", 10)})
+    await sequelize.models.user.create({username: "admin", password: bcrypt.hashSync("love_cnc", 10), is_admin: true} )
     await sequelize.models.need_init.create({name: 'init'})
 
     logger.info('...Done')
 }
 
 async function check_database() {
-    await sequelize.sync();
+    await sequelize.sync({alter: true});
     let val = await sequelize.models.need_init.findAll({where: {name: 'init'}});
     if(val.length === 0){
         logger.info('Need init !');

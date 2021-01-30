@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CNC Speed Calculator</title>
+    <%- include('includes/base/styles') %>
+</head>
+<body>
+<%- include('includes/base/navbar') %>
+<div class="container mt-4 text-white">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card bg-dark border-secondary">
+                <div class="card-header h4 text-center"><%= __('Preset Manager') %></div>
+                <div class="card-body px-0 pb-0">
+                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="material-tab-btn" data-bs-toggle="tab"
+                               href="#material_content"
+                               role="tab"><%= __("Material") %></a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="step-down-tab-btn" data-bs-toggle="tab" href="#step_down_content"
+                               role="tab"><%= __('Step down factor') %></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active table-responsive" id="material_content" role="tabpanel">
+                            <%- include('includes/preset-manager/material-table') %>
+                        </div>
+                        <div class="tab-pane fade table-responsive" id="step_down_content" role="tabpanel">
+                            <%- include('includes/preset-manager/step-down-factor-table') %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        document.getElementById("material-tab-btn").addEventListener('click', onClick);
+        document.getElementById("step-down-tab-btn").addEventListener('click', onClick);
+        if (document.location.hash === "#step_down")
+            (new bootstrap.Tab(document.getElementById('step-down-tab-btn'))).show();
+    });
+
+    function onClick(ev) {
+        if (ev.target.id === "material-tab-btn") {
+            window.location.hash = "";
+        } else {
+            window.location.hash = "step_down";
+        }
+    }
+</script>
+</html>
+
+

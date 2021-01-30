@@ -86,7 +86,7 @@ function onListening() {
 }
 
 async function init() {
-    console.log(`Checking database connection...`);
+    logger.info(`Checking database connection...`);
     try {
         await sequelize.authenticate();
         logger.info('Database connection OK!');

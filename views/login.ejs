@@ -2,36 +2,43 @@
 <html>
 <head>
     <title>CNC Speed Calculator</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='/css/style.css'/>
-    <link rel="stylesheet" href="/css/custom_bootstrap.css">
+    <%- include('includes/base/styles') %>
+
 </head>
 <body>
-<nav class="navbar navbar-dark navbar-expand">
-    <div class="container">
-        <a href="#" class="navbar-brand">
-            CNC Speed Calculator
-        </a>
-    </div>
-</nav>
+<%- include('includes/base/navbar') %>
 <div class="container mt-4 text-white">
-    <form action="/login" method="post">
-        <div>
-            <label>Username:</label>
-            <input type="text" name="username"/>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card bg-dark border-secondary">
+                <div class="card-header text-center h4 border-secondary">
+                    <%= __('Login') %>
+                </div>
+                <div class="card-body">
+                    <form action="/login" method="post" autocomplete="on">
+                        <div class="mb-3 text-center">
+                            <label class="form-label" for="username"><%= __('Username') %></label>
+                            <input class="form-control text-center border-accent" type="text" name="username" id="username"/>
+                        </div>
+                        <div class="mb-3 text-center">
+                            <label class="form-label" for="password"><%= __('Password') %></label>
+                            <input class="form-control text-center border-accent" type="password" name="password" id="password"/>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success"><%= __('Log In') %></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
-        <div>
-            <label>Password:</label>
-            <input type="password" name="password"/>
-        </div>
-        <div>
-            <input type="submit" value="Log In"/>
-        </div>
-    </form>
+    </div>
+
 </div>
 
 
 </body>
 <script src="/js/bootstrap.min.js"></script>
-
 </html>
+
+

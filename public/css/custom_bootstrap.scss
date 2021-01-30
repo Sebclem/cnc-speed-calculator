@@ -10,7 +10,6 @@ $custom-colors:(
 );
 
 
-
 $enable-shadows: true;
 $btn-box-shadow: none;
 
@@ -38,6 +37,16 @@ $list-group-action-hover-color: #adb5bd;
 $alert-bg-scale: 0%;
 $alert-border-scale: -10%;
 $alert-color-scale: -100%;
+
+$nav-tabs-border-color: $accent;
+$nav-tabs-link-active-border-color: $accent $accent $body-bg;
+$nav-tabs-link-active-color: $accent;
+$nav-tabs-link-hover-border-color: $secondary $secondary $nav-tabs-border-color;
+$nav-link-color: white;
+$nav-link-hover-color: $accent;
+
+
+
 
 // Configuration
 @import "../../node_modules/bootstrap/scss/functions";

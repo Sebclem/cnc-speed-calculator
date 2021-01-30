@@ -1,0 +1,33 @@
+<table class="table table-bordered table-dark table-striped table-hover text-center align-middle mt-2 mb-0">
+    <thead class="">
+    <tr>
+        <th rowspan="2"><%= __('Name') %></th>
+        <th colspan="6"><%= __('K factor (By tool diameter)') %></th>
+        <th rowspan="2"></th>
+    </tr>
+    <tr>
+        <th scope="col"><%= __('∅ < 2mm') %></th>
+        <th scope="col"><%= __('∅ ≥ 2mm') %></th>
+        <th scope="col"><%= __('∅ ≥ 3mm') %></th>
+        <th scope="col"><%= __('∅ ≥ 4mm') %></th>
+        <th scope="col"><%= __('∅ ≥ 5mm') %></th>
+        <th scope="col"><%= __('∅ ≥ 6mm') %></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <% step_down_factor.forEach(function (preset){ %>
+        <tr>
+            <td><%= preset.name %></td>
+            <td><%= preset.k_less_2 %></td>
+            <td><%= preset.k_more_2 %></td>
+            <td><%= preset.k_more_3 %></td>
+            <td><%= preset.k_more_4 %></td>
+            <td><%= preset.k_more_5 %></td>
+            <td><%= preset.k_more_6 %></td>
+            <td><a href="/preset-manager/step-down/<%= preset.id %>" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a></td>
+        </tr>
+
+    <% }) %>
+    </tbody>
+</table>

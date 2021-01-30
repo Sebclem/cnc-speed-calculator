@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            CNC Speed Calculator
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <% if(user && user.is_admin){ %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/preset-manager"><%= __('Manage Presets') %></a>
+                    </li>
+                <% } %>
+            </ul>
+            <div class="">
+                <% if(user){ %>
+                    <span class="navbar-text"><%= user.username %></span>
+                    <a class="ms-2 btn btn-sm btn-secondary" href="/logout">Logout</a>
+                <% } else { %>
+                    <a class="ml-2 btn btn-sm btn-secondary" href="/login">Login</a>
+                <% } %>
+            </div>
+        </div>
+
+    </div>
+</nav>

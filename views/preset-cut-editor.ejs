@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CNC Speed Calculator</title>
+    <%- include('includes/base/styles') %>
+</head>
+<body>
+<%- include('includes/base/navbar') %>
+<div class="container mt-4 text-white">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-12">
+            <div class="card bg-dark border-secondary mb-4">
+                <div class="card-header text-center h4 border-secondary">
+                    <%= __('Material Preset Editor') %>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4">
+                                <label for="name" class="form-label"><%= __('Name') %></label>
+                                <input type="text" class="form-control border-accent" id="name" name="name" value="<%= preset.name %>">
+                            </div>
+                            <div class="col-12 col-md-4 mt-3 mt-md-0">
+                                <label for="cutting_speed" class="form-label"><%= __('Cutting Speed') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="cutting_speed" min=0
+                                           step="1" value="<%= preset.cut_speed %>" name="cutting_speed">
+                                    <span class="input-group-text border-accent">m/min</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12 text-center border-bottom border-secondary">
+                                <h5><b><%= __('Feed By Tooth (By tool diameter)') %></b></h5>
+                            </div>
+                        </div>
+                        <div class="row row-cols-md-4 row-cols-lg-5 row-cols-xl-6 row-cols-1 justify-content-center">
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_1" class="form-label fw-bold"><%= __('∅ ≥ 1mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_1" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_1 %>" name="feed_by_tooth_more_1">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_2" class="form-label fw-bold"><%= __('∅ ≥ 2mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_2" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_2 %>" name="feed_by_tooth_more_2">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_3" class="form-label fw-bold"><%= __('∅ ≥ 3mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_3" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_3 %>" name="feed_by_tooth_more_3">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_4" class="form-label fw-bold"><%= __('∅ ≥ 4mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_4" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_4 %>" name="feed_by_tooth_more_4">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_5" class="form-label fw-bold"><%= __('∅ ≥ 5mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_5" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_5 %>" name="feed_by_tooth_more_5">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_6" class="form-label fw-bold"><%= __('∅ ≥ 6mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_6" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_6 %>" name="feed_by_tooth_more_6">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                            <div class="col mt-3 text-center">
+                                <label for="feed_by_tooth_more_8" class="form-label fw-bold"><%= __('∅ ≥ 8mm') %></label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control border-accent border-end-0" id="feed_by_tooth_more_8" min=0
+                                           step="0.001" value="<%= preset.feed_by_tooth_more_8 %>" name="feed_by_tooth_more_8">
+                                    <span class="input-group-text border-accent">mm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-4">
+                            <div class="col-12 d-flex justify-content-center">
+                                    <button class="btn btn-success"><i class="fas fa-save"></i> <%= __('Save') %></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+<script src="/js/bootstrap.min.js"></script>
+</html>
+
+
